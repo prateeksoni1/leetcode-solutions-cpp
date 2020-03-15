@@ -16,21 +16,33 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode *prev = NULL, *next, *temp = head;
 
-        while(temp != NULL) {
-            next = temp->next;
-            temp->next = prev;
-            prev = temp;
+        // RECURSIVE
 
-            if(next) {
-                temp = next;
-            } else {
-                break;
-            }
-        }
+        if (head == NULL || head->next == NULL) return head;
 
-        return temp;
+        ListNode* p = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+
+        return p;
+
+        // ITERATIVE
+        // ListNode *prev = NULL, *next, *temp = head;
+
+        // while(temp != NULL) {
+        //     next = temp->next;
+        //     temp->next = prev;
+        //     prev = temp;
+
+        //     if(next) {
+        //         temp = next;
+        //     } else {
+        //         break;
+        //     }
+        // }
+
+        // return temp;
     }
 };
 
